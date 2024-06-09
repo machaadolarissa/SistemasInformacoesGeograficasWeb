@@ -74,16 +74,26 @@ class MainActivity : ComponentActivity() {
                 ),
                 1
             )
+            throw SecurityException("Permissões de localização não concedidas")
+        }
+
+        if (!mLocManager.isProviderEnabled(PROVIDER)) {
+            Toast.makeText(this, "GPS DESABILITADO.", Toast.LENGTH_LONG).show()
+            throw IllegalStateException("GPS DESABILITADO")
         }
 
         val mLocListener = MinhaLocalizacaoListener()
         mLocManager.requestLocationUpdates(PROVIDER, 0, 0f, mLocListener)
         val localAtual = mLocManager.getLastKnownLocation(PROVIDER)
-        if (!mLocManager.isProviderEnabled(PROVIDER)) {
-            Toast.makeText(this, "GPS DESABILITADO.", Toast.LENGTH_LONG).show()
+
+        if (localAtual != null) {
+            return Ponto(localAtual.latitude, localAtual.longitude, localAtual.altitude)
+        } else {
+            Toast.makeText(this, "Localização atual não encontrada. Tentando obter atualização de localização...", Toast.LENGTH_LONG).show()
+            throw IllegalStateException("Localização atual não encontrada")
         }
-        return Ponto(localAtual!!.latitude, localAtual.longitude, localAtual.altitude)
     }
+
 
     fun calcularDistancia(v: View) {
         val mLocManager: LocationManager = getSystemService(LOCATION_SERVICE) as LocationManager

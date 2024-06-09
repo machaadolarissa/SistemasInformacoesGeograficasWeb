@@ -58,7 +58,7 @@
             <EditText
                 android:id="@+id/edtPtoA"
                 android:layout_width="match_parent"
-                android:layout_height="99dp"
+                android:layout_height="match_parent"
                 android:ems="10"
                 android:inputType="textPersonName|textMultiLine"
                 android:maxLines="5"
@@ -107,7 +107,7 @@
             <EditText
                 android:id="@+id/edtPtoB"
                 android:layout_width="match_parent"
-                android:layout_height="99dp"
+                android:layout_height="match_parent"
                 android:ems="10"
                 android:inputType="textPersonName|textMultiLine"
                 android:maxLines="5"
