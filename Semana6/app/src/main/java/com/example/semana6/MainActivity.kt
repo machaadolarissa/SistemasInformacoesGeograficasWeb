@@ -29,7 +29,7 @@ class MainActivity : AppCompatActivity() {
 
     private fun setupMap() {
         mMapView.let { mapView ->
-            val basemapType = Basemap.Type.STREETS_VECTOR
+            val basemapType = Basemap.Type.IMAGERY_WITH_LABELS_VECTOR
             val latitude = minhaLocalizacaoListener.latitude
             val longitude = minhaLocalizacaoListener.longitude
             val levelOfDetail = 20
